@@ -1,6 +1,6 @@
 import express from "express";
 const userRouter = express.Router();
-import pool from "./PoolConnection";
+import pool from "./PoolConnection.js";
 
 userRouter.get("/", (req,res) =>{
     try { res.send("Hello from Routes for User"); }

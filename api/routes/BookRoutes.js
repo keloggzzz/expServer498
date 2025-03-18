@@ -43,4 +43,31 @@ import pool from "./PoolConnection.js";
         }
     });
 
+    bookRouter.get("/addbook", async (req, res) => {
+            try {
+                var title = "Johnny Coding Journey";
+                var author = "Jimmy John"
+                var price= 50.98
+                var catid=5;
+                    //FOUR VARIABLE NEEEDED FOR BOOK. DATABASE AUTOMATICALLY DECIDES BOOKID
+
+                var qry= "insert into books (title, author, price, category_id) VALUES ("
+                + "'"+title+"'," //varchar needs quotes
+                + "'"+author+"',"
+                +price+"," //number values do not
+                +catid+
+                ")"; //ending VALUES
+
+                const result = await pool.query(qry);
+                console.log(result);
+                res.json({ ans: "Successfully Added" });
+                //   console.log(result.rows.length);
+            } catch (error) {
+                console.error("Query error:", error);
+                res.json({ ans: "Not Added" });
+            }
+        });
+
+
+
 export default bookRouter;
