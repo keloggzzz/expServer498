@@ -68,6 +68,31 @@ import pool from "./PoolConnection.js";
             }
         });
 
+        bookRouter.get("/updateBook", async (req, res) => {
+            try {
+                var book=req.body;
+                var title = book.title;
+                var author = book.id;
+                var price= book.price;
+                var catid=book.category_id;
+                var bookid=book.id
+
+                    var qry= "Update books set Author='"+author+"', title='"+title+"',price="+price
+                    +",category_id="+catid+" where id="+bookid;
+              
+                console.log(qry);
+                const result = await pool.query(qry);
+
+                console.log(result);
+                res.json({ans:1});
+                
+                } catch (error) {
+                console.error("Query error:", error);
+                res.json({ans:0});
+
+            }
+        });
+
 
 
 export default bookRouter;
