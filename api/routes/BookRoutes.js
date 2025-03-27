@@ -43,7 +43,7 @@ import pool from "./PoolConnection.js";
         }
     });
 
-    bookRouter.get("/addbook", async (req, res) => {
+    bookRouter.post("/addbook", async (req, res) => {
             try {
                 var title = "Johnny Coding Journey";
                 var author = "Jimmy John"
